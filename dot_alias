@@ -1,0 +1,32 @@
+alias ls='ls --color=auto -F'
+alias l='ls --color=auto -F -lh'
+alias ll='ls --color=auto -F -lah'
+alias grep='grep --color=auto'
+alias root='root -l'
+alias pwd='pwd -P'
+alias sudo='sudo -E'
+alias less='less -r'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../../'
+alias .....='cd ../../../..'
+# alias dotsync='\cd ~/.dotfiles && git pull && git submodule init && git submodule update && \cd - &> /dev/null'
+alias time='/usr/bin/time -v'
+alias o='xdg-open'
+alias k='k -h'
+
+# if ! command -v ranger &> /dev/null; then
+#     if [[ ! -f ~/.ranger/ranger.py ]]; then
+#         printf "GNU ranger not found, install it? [y/N]: "; read ans
+#         if [ "$ans" != "${ans#[Yy]}" ]; then
+#             \git clone https://github.com/ranger/ranger.git ~/.ranger
+#             alias ranger='~/.ranger/ranger.py'
+#         fi
+#     else
+#         alias ranger='~/.ranger/ranger.py'
+#     fi
+# fi
+
+alias ra="ranger"
+
+[ -f ~/.alias_bis ] && source ~/.alias_bis

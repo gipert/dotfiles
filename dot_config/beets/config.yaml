@@ -1,0 +1,5 @@
+directory: ~/music
+plugins: fetchart musicbrainz
+import:
+  move: yes
+  languages: en

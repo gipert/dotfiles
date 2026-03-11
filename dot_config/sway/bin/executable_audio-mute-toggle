@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if amixer get Master | grep -q '\[off\]'; then
+    amixer set Master on
+else
+    amixer set Master off
+fi

@@ -1,0 +1,9 @@
+R /home/gipert
+
+! **/cache
+! **/.*cache
+! **/__pycache__
+! /home/gipert/.apptainer
+! /home/gipert/downloads
+
+- **/*.sif

@@ -1,0 +1,242 @@
+# Set up environment for portals (if not already done by default configs)
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+
+set $mod Mod4
+
+font pango:FiraCode 11
+
+# set primary gruvbox colorscheme colors
+set $bg       "#282828"
+set $red      "#cc241d"
+set $green    "#98971a"
+set $yellow   "#d79921"
+set $blue     "#458588"
+set $purple   "#b16286"
+set $aqua     "#689d68"
+set $gray     "#a89984"
+set $darkgray "#1d2021"
+set $white    "#ebdbb2"
+
+# blue gruvbox
+# class                 border    backgr    text      indicator child_border
+client.focused          $blue     $blue     $darkgray $purple   "#303536"
+client.focused_inactive $darkgray $darkgray $yellow   $purple   $darkgray
+client.unfocused        $darkgray $darkgray $yellow   $purple   $darkgray
+client.urgent           $red      $red      $white    $red      $red
+
+set $builtin_mon "China Star Optoelectronics Technology Co., Ltd MNE007JA1-3 Unknown"
+set $office_center_mon "Philips Consumer Electronics Company PHL 279P1 UK82149000482"
+set $office_right_mon "Dell Inc. DELL UP2516D 3JV405AR109L"
+
+output $builtin_mon {
+  scale 1
+  pos 0 0
+}
+bindswitch --reload --locked lid:on output $builtin_mon disable
+bindswitch --reload --locked lid:off output $builtin_mon enable
+
+# office: horizontal / central
+output $office_center_mon {
+  scale 2.00
+  pos 1920 0
+}
+
+# office: vertical / right
+output $office_right_mon {
+  transform 270
+  scale 1.33
+  # NOTE: 'scale' has to be taken into account
+  # NOTE: y value optimized at the office
+  pos 3840 -350
+}
+
+output * bg ~/pictures/wallpapers/patterns/hexabump_@2X.png tile
+
+# set names for workspaces
+set $w1  1
+set $w2  2
+set $w3  3
+set $w4  4
+set $w5  5
+set $w6  6
+set $w7  7
+set $w8  8
+set $w9  9
+set $w10 10
+set $w11 11
+set $w12 12
+
+set $w13 13
+set $w14 14
+
+# I hate it
+focus_follows_mouse no
+
+# Lock the screen
+bindsym $mod+l exec swaylock
+
+input "type:keyboard" {
+    repeat_delay 200
+    repeat_rate 40
+}
+
+input type:touchpad {
+    tap enabled
+}
+
+# assign workspaces
+workspace $w1  output $office_center_mon $builtin_mon
+workspace $w2  output $office_center_mon $builtin_mon
+workspace $w3  output $office_center_mon $builtin_mon
+workspace $w4  output $office_center_mon $builtin_mon
+workspace $w5  output $office_center_mon $builtin_mon
+workspace $w6  output $office_center_mon $builtin_mon
+workspace $w7  output $office_center_mon $builtin_mon
+workspace $w8  output $office_center_mon $builtin_mon
+workspace $w9  output $office_center_mon $builtin_mon
+workspace $w10 output $office_center_mon $builtin_mon
+workspace $w11 output $office_center_mon $builtin_mon
+workspace $w12 output $office_center_mon $builtin_mon
+
+workspace $w13 output $office_right_mon $builtin_mon
+workspace $w14 output $builtin_mon
+
+# no titles pls
+default_border pixel
+gaps inner 7
+gaps outer 0
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec kitty
+# start a floating terminal
+bindsym $mod+Shift+Return exec 'kitty --class kitty_floating'
+
+# close (and kill if needed) focused window
+bindsym $mod+Shift+q kill
+
+# wofi related
+bindsym $mod+Space exec wofi
+bindsym $mod+p exec tessen -a autotype
+bindsym $mod+j exec rofimoji
+bindsym $mod+c exec rofi -show calc -modi calc -no-show-match -no-sort
+
+# change focus
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+s floating toggle
+
+# change focus between tiling / floating windows
+# bindsym $mod+space focus mode_toggle
+
+# switch to workspace
+bindsym $mod+1 workspace $w1
+bindsym $mod+2 workspace $w2
+bindsym $mod+3 workspace $w3
+bindsym $mod+4 workspace $w4
+bindsym $mod+5 workspace $w5
+bindsym $mod+6 workspace $w6
+bindsym $mod+7 workspace $w7
+bindsym $mod+8 workspace $w8
+bindsym $mod+9 workspace $w9
+bindsym $mod+0 workspace $w10
+bindsym $mod+minus workspace $w11
+bindsym $mod+equal workspace $w12
+
+# FIXME
+# bindsym $mod+v workspace $w13
+bindsym $mod+e workspace $w14
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $w1
+bindsym $mod+Shift+2 move container to workspace $w2
+bindsym $mod+Shift+3 move container to workspace $w3
+bindsym $mod+Shift+4 move container to workspace $w4
+bindsym $mod+Shift+5 move container to workspace $w5
+bindsym $mod+Shift+6 move container to workspace $w6
+bindsym $mod+Shift+7 move container to workspace $w7
+bindsym $mod+Shift+8 move container to workspace $w8
+bindsym $mod+Shift+9 move container to workspace $w9
+bindsym $mod+Shift+0 move container to workspace $w10
+bindsym $mod+Shift+minus move container to workspace $w11
+bindsym $mod+Shift+equal move container to workspace $w12
+
+# FIXME
+# bindsym $mod+Shift+v move container to workspace $w13
+bindsym $mod+Shift+e move container to workspace $w14
+
+# reload the configuration file
+bindsym $mod+Alt+Shift+r reload
+# restart inplace
+bindsym $mod+Alt+Shift+q exit
+
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioStop exec mpc stop
+bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioMute exec amixer set Master toggle
+bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer set Master 5%-
+
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
+
+# screenshot
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy -n
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+  # These bindings trigger as soon as you enter the resize mode
+  bindsym Left  resize shrink width  20 px or 1 ppt
+  bindsym Right resize grow   width  20 px or 1 ppt
+  bindsym Down  resize grow   height 20 px or 1 ppt
+  bindsym Up    resize shrink height 20 px or 1 ppt
+
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# app states
+for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
+for_window [app_id="kitty_floating"] floating enable
+for_window [app_id="zoom"] floating enable
+
+assign [app_id="Slack"] workspace $w9
+assign [app_id="org.mozilla.Thunderbird"] workspace $w10
+assign [app_id="org.telegram.desktop"] workspace $w11
+assign [app_id="whatsit"] workspace $w11
+assign [app_id="firefox"] workspace $w12
+
+bar {
+  swaybar_command waybar
+}
+
+# notifications
+exec mako
+# multi-monitor manager
+exec shikane
+# switch off monitor if idle
+exec swayidle -w timeout 180 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'

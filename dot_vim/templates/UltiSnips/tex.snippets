@@ -1,0 +1,107 @@
+global !p
+def common():
+    return r"""\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{microtype}
+\usepackage{booktabs}
+
+% math
+\usepackage{amsmath}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\theta}{\vartheta}
+\renewcommand{\rho}{\varrho}
+\renewcommand{\phi}{\varphi}"""
+endglobal
+
+snippet tolcolors "Paul Tol colors from mtheme" b
+% Available aliases: \<color>{<text>}
+%
+%   tlblue tlred tlpurple tlgreen tlbrown
+%   tdblue tdred tdpurple tdgreen tdbrown
+%
+\usepackage{pgfplots}
+\usepackage{pgfplotsthemetol}
+\newcommand{\tlblue}[1]{\textcolor{TolLightBlue}{#1}}
+\newcommand{\tdblue}[1]{\textcolor{TolDarkBlue}{#1}}
+\newcommand{\tlred}[1]{\textcolor{TolLightRed}{#1}}
+\newcommand{\tdred}[1]{\textcolor{TolDarkRed}{#1}}
+\newcommand{\tlpurple}[1]{\textcolor{TolLightPurple}{#1}}
+\newcommand{\tdpurple}[1]{\textcolor{TolDarkPurple}{#1}}
+\newcommand{\tlpink}[1]{\textcolor{TolLightPink}{#1}}
+\newcommand{\tdpink}[1]{\textcolor{TolDarkPink}{#1}}
+\newcommand{\tlgreen}[1]{\textcolor{TolLightGreen}{#1}}
+\newcommand{\tdgreen}[1]{\textcolor{TolDarkGreen}{#1}}
+\newcommand{\tlbrown}[1]{\textcolor{TolLightBrown}{#1}}
+\newcommand{\tdbrown}[1]{\textcolor{TolDarkBrown}{#1}}
+endsnippet
+
+snippet columns "" b
+\begin{columns}
+	\begin{column}{0.5\textwidth}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+	\end{column}
+\end{columns}
+endsnippet
+
+snippet grmdfont "template for Garamond typesetted article" b
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% GARAMOND FONT TEMPLATE. COMMANDS:
+% \liningnums, \oldstylenums, \tabnums      : different styles for numbers
+% \initial{<letter>}{<text in sc>}          : create the first fancy big letter: A D F G L N O Q I
+% \decorationA \decorationB \decorationC    : decorations
+% \textit \textsw \textsc \textinit         : available shapes
+% \nicefrac                                 : nice inline fraction style
+% \darkred                                  : nice dark red colour
+%
+%
+% Here you can set global settings
+\usepackage{fontspec}
+	\defaultfontfeatures{%
+		RawFeature={%
+			+calt   % *Contextual alternates
+			,+clig  % *contextual ligatures
+			,+ccmp  % *composition & decomposition
+			,+lnum  % lining numbers
+			,+tnum  % tabular numbers
+			%,+frac  % nice fractions
+			%,+tlig  % 'tex-ligatures': \`\` '' -- --- !\` ?\` << >>
+			%,+cv06  % narrow guillemets
+			% ...
+		}%
+	}
+\setmainfont{EBGaramond12-Regular}[
+	ItalicFont = EBGaramond12-Italic
+]
+% use typewriter computer modern as monospaced font
+\setmonofont{cmuntt.otf}[Scale=MatchLowercase]
+\newcommand{\textsw}[1]{\textit{\addfontfeature{RawFeature=+swsh}#1}}
+\newcommand{\tabnums}[1]{{\addfontfeature{RawFeature=+tnum}#1}}
+\newcommand{\decorationA}{{\Huge\char"E001\char"E002}}
+\newcommand{\decorationB}{\Huge\char"2619\char"2767}
+\newcommand{\decorationC}{\Huge\char"2766}
+\newcommand{\nicefrac}[1]{{\addfontfeature{RawFeature=+frac}#1}}
+\newcommand{\darkred}[1]{{\addfontfeature{Color=980000}#1}}
+% initials
+\usepackage{lettrine}
+\newfontface{\initsh}{EBGaramond-Initials}
+\newcommand{\textinit}[1]{{\initsh #1}}
+\newcommand{\initial}[2]{\lettrine[lines=3, depth=1, findent=2pt, nindent=0em]{\initsh #1}{#2}}
+% math
+\usepackage[cmbraces, varg, libertine]{newtxmath}
+\usepackage{bm}\renewcommand{\mathbf}{\bm}
+\usepackage{amsmath, amssymb}
+	\renewcommand{\epsilon}{\varepsilon}
+	\renewcommand{\theta}{\vartheta}
+	\renewcommand{\rho}{\varrho}
+	\renewcommand{\phi}{\varphi}
+\usepackage{microtype}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+endsnippet
+
+snippet frame "" b
+\begin{frame}[]{}
+\end{frame}
+endsnippet

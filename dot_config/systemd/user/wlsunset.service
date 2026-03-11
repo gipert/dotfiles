@@ -1,0 +1,14 @@
+[Unit]
+Description=wlsunset (cached auto location)
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/wlsunset-auto.sh
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target
+

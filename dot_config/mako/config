@@ -1,0 +1,16 @@
+font=Fira Sans 12
+width=400
+anchor=bottom-right
+background-color=#282828
+text-color=#ebdbb2
+margin=3
+outer-margin=20
+padding=10
+border-size=2
+border-color=#458588
+border-radius=5
+text-alignment=center
+default-timeout=5000
+
+[mode=do-not-disturb]
+invisible=1

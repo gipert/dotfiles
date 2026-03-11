@@ -1,0 +1,127 @@
+* {
+    font-family: "Fira Code", "Font Awesome 7 Free", "Symbols Nerd Font", monospace;
+    font-size: 11pt;
+    border-radius: 5px;
+    color: #ebdbb2; /* global text color */
+}
+
+window#waybar {
+    background: transparent;
+}
+
+#mpd,
+#custom-bluetooth,
+#cpu,
+#temperature,
+#memory,
+#pulseaudio,
+#network,
+#battery,
+#bluetooth,
+#backlight,
+#clock,
+#custom-dunst,
+#custom-hostname,
+#custom-power {
+    padding: 3px 8px; /* v/h padding between text and container */
+    margin: 3px 2px; /* v/h padding between container and the outside */
+    background: #3c3836;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces {
+    background: transparent;
+    margin: 3px 2px; /* padding between container and the outside */
+}
+
+#workspaces button {
+    padding: 3px 8px;
+    border: none;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button.focused {
+    background: #3c3836;
+    border-bottom-color: #d79921; /* yellow */
+}
+
+#workspaces button.urgent {
+    background: #cc241d;
+}
+
+#workspaces button:hover {
+    background: #3c3836;
+}
+
+#cpu {
+    border-bottom-color: #cc241d; /* red */
+}
+
+#cpu.low {
+    color: #98971a; /* green */
+}
+
+#cpu.medium {
+    color: #d79921; /* yellow */
+}
+
+#cpu.high {
+    color: #cc241d; /* red */
+}
+
+#memory {
+    border-bottom-color: #98971a; /* green */
+}
+
+#network {
+    border-bottom-color: #b16286; /* magenta/purple */
+}
+
+#clock, #bluetooth {
+    border-bottom-color: #458588; /* blue */
+}
+
+#pulseaudio, #backlight {
+    border-bottom-color: #ebdbb2; /* bg */
+}
+
+#battery {
+    border-bottom-color: #689d6a; /* acqua */
+}
+
+#battery.warning {
+    color: #d79921; /* yellow */
+    border-bottom-color: #d79921;
+}
+
+#battery.critical {
+    color: #cc241d; /* red */
+    border-bottom-color: #cc241d; /* red */
+}
+
+#temperature {
+    border-bottom-color: #d79921; /* yellow */
+}
+
+#temperature.warning {
+    color: #d79921; /* yellow */
+}
+
+#temperature.critical {
+    color: #cc241d; /* red */
+}
+
+#custom-hostname {
+    border-bottom-color: transparent;
+}
+
+#custom-power {
+    /* red */
+    color: #fb4934;
+    border-bottom-color: #fb4934;
+}
+
+tooltip {
+    background: rgba(40, 40, 40, 0.9);
+    border: 2px solid #458588;
+}

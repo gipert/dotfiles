@@ -1,0 +1,48 @@
+[[profile]]
+name = "laptop only"
+# exec = ["notify-send shikane \"profile $SHIKANE_PROFILE_NAME has been applied\""]
+
+  [[profile.output]]
+  # built-in laptop
+  search = ["m=MNE007JA1-3", "s=", "v=China Star Optoelectronics Technology Co., Ltd"]
+  mode = "1920x1200@60.001Hz"
+  scale = 1
+  transform = "normal"
+  exec = ["swayws range --numeric 1 12 $SHIKANE_OUTPUT_NAME"]
+  enable = true
+
+[[profile]]
+name = "office"
+# exec = ["notify-send shikane \"profile <$SHIKANE_PROFILE_NAME> has been applied\""]
+
+  [[profile.output]]
+  # built-in laptop
+  search = ["m=MNE007JA1-3", "s=", "v=China Star Optoelectronics Technology Co., Ltd"]
+  mode = "1920x1200@60.001Hz"
+  enable = true
+  position = "0,0"
+  scale = 1
+  transform = "normal"
+  adaptive_sync = false
+  exec = ["swaymsg 'focus output $SHIKANE_OUTPUT_NAME; workspace number 14'"]
+
+  [[profile.output]]
+  # office, center
+  search = ["m=PHL 279P1", "s=UK82149000482", "v=Philips Consumer Electronics Company"]
+  enable = true
+  position = "1920,0"
+  scale = 2.0
+  transform = "normal"
+  adaptive_sync = false
+  exec = ["swayws range --numeric 1 12 $SHIKANE_OUTPUT_NAME"]
+
+  [[profile.output]]
+  # office, vertical
+  search = ["m=DELL UP2516D", "s=3JV405AR109L", "v=Dell Inc."]
+  mode = "2560x1440@59.951Hz"
+  enable = true
+  position = "3840,-350"
+  scale = 1.33
+  transform = "90"
+  adaptive_sync = false
+  exec = ["swaymsg 'focus output $SHIKANE_OUTPUT_NAME; workspace number 13'"]

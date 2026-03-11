@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# check if external monitor is connected
+if swaymsg -t get_outputs | grep -q '"HDMI-A-1".* "on"'; then
+    # external monitor is connected
+
+    # move all workspaces except 1 to HDMI-A-1
+    for ws in $(swaymsg -t get_workspaces -r | jq '.[].name' -r); do
+        [ "$ws" = "1" ] && continue
+        swaymsg workspace "$ws"
+        swaymsg move workspace to output HDMI-A-1
+    done
+
+    # ensure workspace 1 exists on laptop screen
+    swaymsg workspace 1
+    swaymsg move workspace to output eDP-1
+
+else
+    # external monitor is disconnected → move everything back to eDP-1
+    for ws in $(swaymsg -t get_workspaces -r | jq '.[].name' -r); do
+        swaymsg workspace "$ws"
+        swaymsg move workspace to output eDP-1
+    done
+fi

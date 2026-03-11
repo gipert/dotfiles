@@ -1,0 +1,52 @@
+[
+  {
+    "layer": "top",
+    "position": "top",
+    "output": "!Dell Inc. DELL UP2516D 3JV405AR109L",
+
+    "include": [
+      "~/.config/waybar/modules.jsonc"
+    ],
+
+    "modules-left": [
+      "custom/hostname",
+      "sway/workspaces"
+    ],
+
+    "modules-right": [
+      "cpu",
+      "temperature",
+      "memory",
+      "backlight",
+      "pulseaudio",
+      "bluetooth",
+      "network",
+      "battery",
+      "clock",
+      "custom/power"
+    ]
+  },
+  {
+    "layer": "top",
+    "position": "top",
+    "output": "Dell Inc. DELL UP2516D 3JV405AR109L",
+
+    "include": [
+      "~/.config/waybar/modules.jsonc"
+    ],
+
+    "modules-left": [
+      "custom/hostname",
+      "sway/workspaces"
+    ],
+
+    "modules-right": [
+      "cpu",
+      "memory",
+      "battery",
+      "clock"
+    ]
+  }
+]
+
+// vim: tabstop=2 shiftwidth=2 expandtab

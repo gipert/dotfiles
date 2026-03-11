@@ -1,0 +1,131 @@
+// https://fontawesome.com/icons
+// https://www.nerdfonts.com/cheat-sheet
+{
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "I",
+      "2": "II",
+      "3": "III",
+      "4": "IV",
+      "5": "V",
+      "6": "VI",
+      "7": "VII",
+      "8": "VIII",
+      "9": "",
+      "10": "",
+      "11": "",
+      "12": "",
+      "13": "vertical",
+      "14": "external"
+    }
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": ["", "", "", ""]
+  },
+
+  "bluetooth": {
+    "format": "󰂯 {status}",
+    "on-click-right": "bluetoothctl show | grep -q 'Powered: yes' && bluetoothctl power off || bluetoothctl power on",
+    "on-click-left": "bluetoothctl scan on",
+    "format-connected": "󰂯 {device_alias}",
+    "format-off": "󰂲",
+    "format-on": "󰂯",
+    "format-connected-battery": "󰂯 {device_alias} {device_battery_percentage}%",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+  },
+
+  "cpu": {
+    "interval": 1,
+    "format": " {usage}% {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7} {avg_frequency:0.1f}GHz",
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "states": {
+      "low": 20,
+      "medium": 60,
+      "high": 90
+    },
+    "tooltip": true
+  },
+
+  "temperature": {
+    "interval": 1,
+    "hwmon-path": "/sys/class/thermal/thermal_zone10/temp",
+    "warning-threshold": 80,
+    "critical-threshold": 95,
+    "format": " {temperatureC}°C",
+    "format-critical": " {temperatureC}°C"
+  },
+
+  "memory": {
+    "interval": 1,
+    "format": " {used:0.1f}GB",
+    "tooltip": false
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": " {volume}% {icon}",
+    "format-muted": "",
+    "format-icons": {
+      "default": ["", ""]
+    },
+    "scroll-step": 1,
+    "on-click": "pavucontrol",
+    "ignored-sinks": ["Easy Effects Sink"]
+  },
+
+  "network": {
+    "interval": 3,
+    "format-wifi": " {essid}",
+    "format-ethernet": " {ipaddr}",
+    "format-disconnected": "",
+    "tooltip-format": "{ifname} {ipaddr} ({signalStrength}%)",
+    "format-disabled": "off",
+    "on-click": "nmcli d wifi rescan"
+  },
+
+  "battery": {
+    "interval": 10,
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format": "{icon} {capacity}%",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip-format": "{timeTo} · consumption {power}W · {cycles} cycles · health at {health}%"
+  },
+
+  "clock": {
+    "interval": 1,
+    "format": " {:%a %d/%m/%Y  %H:%M}",
+    "tooltip": false
+  },
+
+  "custom/hostname": {
+    "format": "{}",
+    "exec": "echo \"󰣇 $(whoami)@$(hostname)\"",
+    "interval": 60,
+    "tooltip": false
+  },
+
+  "custom/power": {
+    "format" : "⏻",
+    "tooltip": false,
+    "menu": "on-click",
+    "menu-file": "~/.config/waybar/power_menu.xml",
+    "menu-actions": {
+      "shutdown": "systemctl poweroff",
+      "reboot": "systemctl reboot",
+      "suspend": "systemctl suspend"
+    }
+  }
+}
+
+// vim: tabstop=2 shiftwidth=2 expandtab

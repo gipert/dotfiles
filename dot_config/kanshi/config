@@ -1,0 +1,8 @@
+profile {
+    output "China Star Optoelectronics Technology Co., Ltd MNE007JA1-3 Unknown" enable
+}
+
+profile {
+    output "China Star Optoelectronics Technology Co., Ltd MNE007JA1-3 Unknown" disable
+    output "Ancor Communications Inc ASUS VC239 G2LMTJ021620" enable
+}

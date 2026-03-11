@@ -1,0 +1,14 @@
+colors.scheme=gruvbox
+# visualizer.scaling.multiplier=1.0
+
+visualizer.spectrum.character=█
+visualizer.spectrum.bar.width=1
+visualizer.spectrum.bar.spacing=0
+visualizer.spectrum.smoothing.mode=sgs
+visualizer.sgs.smoothing.points=2
+visualizer.sgs.smoothing.passes=1
+
+visualizer.ellipse.character=█
+visualizer.ellipse.radius=1
+
+visualizer.lorenz.character=█

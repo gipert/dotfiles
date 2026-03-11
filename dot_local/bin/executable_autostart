@@ -1,0 +1,14 @@
+#!/bin/bash
+
+apps=(
+    org.mozilla.Thunderbird
+    org.telegram.desktop.desktop
+    whatsit
+    slack
+    firefox
+)
+
+for app in ${apps[@]}; do
+    pkill -f $app
+    gtk-launch $app
+done

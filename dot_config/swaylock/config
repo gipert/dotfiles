@@ -1,0 +1,45 @@
+# background image
+image=~/pictures/wallpapers/patterns/hexabump_@2X.png
+tiling
+
+# font
+font=FiraCode
+font-size=30
+
+# indicator size
+indicator-radius=240
+indicator-thickness=20
+
+line-uses-ring
+
+# typing ring (blue)
+color=282828
+ring-color=458588
+separator-color=7c6f64
+text-color=ebdbb2
+inside-color=00000000
+
+# highlight colors (green for keys, red for backspace)
+key-hl-color=98971a
+bs-hl-color=cc241d
+
+# states: verify (yellow)
+inside-ver-color=00000000
+ring-ver-color=d79921
+text-ver-color=d79921
+
+# states: wrong (red)
+inside-wrong-color=00000000
+ring-wrong-color=cc241d
+text-wrong-color=cc241d
+
+# states: clear (purple)
+inside-clear-color=00000000
+ring-clear-color=b16286
+text-clear-color=b16286
+
+# caps lock indicator (yellow)
+indicator-caps-lock
+inside-caps-lock-color=00000000
+ring-caps-lock-color=458588
+text-caps-lock-color=cc241d

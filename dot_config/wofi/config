@@ -1,0 +1,7 @@
+mode=drun,run
+lines=20
+insensitive=true
+use_search_box=false
+term=kitty
+gtk_dark=true
+stylesheet=style.css
