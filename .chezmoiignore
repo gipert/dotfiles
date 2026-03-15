@@ -1,13 +1,31 @@
 README.md
 
-{{ if eq .chezmoi.hostname "thinkpad" }}
+{{- if eq .chezmoi.hostname "thinkpad" }}
 
 .p10k.zsh
 10-install-tools.sh
 
-{{ else }}
+{{- else }}
 
 *
-!.alias
+!.config/ranger
+!.vim
 
-{{ end }}
+!.zsh
+.zsh/*
+!.zsh/aliases.plugin.zsh
+!.zsh/misc.plugin.zsh
+!.zsh/p10k-addons.plugin.zsh
+
+!.alias
+!.bash_profile
+!.bashrc
+!.gitconfig
+!.p10k.zsh
+!.vimrc
+!.zshenv
+!.zshrc
+!.hushlogin
+!10-install-tools.sh
+
+{{- end }}
