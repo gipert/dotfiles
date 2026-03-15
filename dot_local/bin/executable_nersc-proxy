@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# fail on errors
+set -euo pipefail
+
+# get full entry from pass (keep newlines)
+entry=$(pass work/computing/nersc.gov/pertoldi)
+
+# first line = password
+password=$(printf '%s\n' "$entry" | sed -n '1p')
+
+# extract base32 secret from otpauth:// line
+secret=$(
+    printf '%s\n' "$entry" \
+        | grep '^otpauth://' \
+        | sed -E 's/.*secret=([^&]+).*/\1/' \
+        | tr 'a-z' 'A-Z'
+    )
+
+# generate TOTP
+otp=$(oathtool --totp -b "$secret")
+
+# concat exactly what sshproxy expects: password+OTP on a single line
+pw_otp="${password}${otp}"
+
+send_pw_otp() {
+    # send one line: password+otp, then newline
+    printf '%s\n' "$pw_otp"
+}
+
+if [ $# -eq 0 ]; then
+    send_pw_otp | sshproxy.sh -u pertoldi
+else
+    echo $1
+    send_pw_otp | sshproxy.sh -u pertoldi -c "$1"
+fi
