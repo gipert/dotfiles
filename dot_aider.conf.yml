@@ -1,0 +1,10 @@
+model: gpt-5.4
+
+auto-lint: false
+lint-cmd: ~/.local/bin/aider-pre-commit
+
+auto-test: false
+test-cmd: pytest -vvv && cd docs && make
+
+read:
+  - AGENTS.md
