@@ -26,3 +26,8 @@ export EDITOR="vim"
 [ -z "$SINGULARITY_CONTAINER" ] && [ -f ~/.zshenv_bis ] && source ~/.zshenv_bis
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+
+addpath "$HOME/.local/bin" after PATH
+addpath "$HOME/.local/share/man" after MANPATH
+
+export GITSTATUS_NUM_THREADS=4
