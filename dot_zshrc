@@ -22,13 +22,6 @@ autoload -Uz compinit
 compinit
 setopt complete_aliases
 
-# install zplug
-if [[ ! -f ~/.zplug/init.zsh ]]; then
-    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-    # need to wait a sec otherwise init.zsh is not there???
-    sleep 2
-fi
-
 source ~/.zplug/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
@@ -57,14 +50,6 @@ zplug "junegunn/fzf", \
   use:"shell/*.zsh"
 
 zplug "~/.zsh", from:local
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
 
 zplug load
 
