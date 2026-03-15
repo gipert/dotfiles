@@ -1,6 +1,13 @@
 README.md
 
-{{- if eq .chezmoi.hostname "thinkpad" }}
+{{ if eq .chezmoi.hostname "thinkpad" }}
+
 .p10k.zsh
 10-install-tools.sh
-{{- end }}
+
+{{ else }}
+
+*
+!.alias
+
+{{ end }}
