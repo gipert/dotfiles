@@ -124,7 +124,7 @@ set autoread
 autocmd FocusGained,BufEnter * checktime
 
 " color scheme settings
-colorscheme gruvbox
+silent! colorscheme gruvbox
 set background=dark
 syntax on
 " Highlight TODO, FIXME, NOTE, INFO, BUG etc.
