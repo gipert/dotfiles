@@ -32,6 +32,3 @@ if python3 -m venv --help >/dev/null 2>&1; then
 else
     echo "ERROR: ranger-fm not installed because python-venv is not available"
 fi
-
-# vim plugins
-vim +'PlugInstall --sync' +qa
