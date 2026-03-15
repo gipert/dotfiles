@@ -17,6 +17,8 @@ curl -fsLS https://raw.githubusercontent.com/romkatv/zsh-bin/master/install \
 echo "INFO: installing zplug and plugins"
 if [ ! -f ~/.zplug/init.zsh ]; then
     curl -fsLS https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+    # HACK: if we don't wait, we get a 'no such file or directory' when installing plugins
+    sleep 2
 fi
 zsh -ic 'zplug install'
 
