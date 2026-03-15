@@ -1,0 +1,5 @@
+savefig.bbox: tight
+# constrained layout should be better than tight layout
+figure.constrained_layout.use: True
+# paul tol colors
+axes.prop_cycle: cycler('color', ['4477AA', 'EE6677', '228833', 'CCBB44', '66CCEE', 'AA3377', 'BBBBBB'])
