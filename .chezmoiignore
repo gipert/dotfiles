@@ -1,1 +1,6 @@
 README.md
+
+{{- if eq .chezmoi.hostname "thinkpad" }}
+run_once_after_10-install-tools.sh
+run_once_after_20-install-zplugins.sh
+{{- end }}
