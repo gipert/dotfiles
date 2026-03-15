@@ -20,8 +20,16 @@ README.md
 !.alias
 !.bash_profile
 !.bashrc
+
+!.config
+.config/*
+!.config/matplotlib/matplotlibrc
+
 !.gitconfig
+!.juliarc
 !.p10k.zsh
+!.rootrc
+!.rootlogon.C
 !.vimrc
 !.zshenv
 !.zshrc
