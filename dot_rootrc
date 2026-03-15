@@ -1,0 +1,85 @@
+# ROOT CERN config file
+
+# GUI specific settings.
+Gui.DefaultFont:            -*-helvetica-medium-r-*-*-24-*-*-*-*-*-iso8859-1
+Gui.MenuFont:               -*-helvetica-medium-r-*-*-24-*-*-*-*-*-iso8859-1
+Gui.MenuHiFont:             -*-helvetica-bold-r-*-*-24-*-*-*-*-*-iso8859-1
+Gui.DocFixedFont:           -*-courier-medium-r-*-*-24-*-*-*-*-*-iso8859-1
+Gui.DocPropFont:            -*-helvetica-medium-r-*-*-24-*-*-*-*-*-iso8859-1
+Gui.IconFont:               -*-helvetica-medium-r-*-*-20-*-*-*-*-*-iso8859-1
+Gui.StatusFont:             -*-helvetica-medium-r-*-*-20-*-*-*-*-*-iso8859-1
+Browser.IconStyle:           big
+Browser.Name: TRootBrowser
+
+# Activate malloc/new, free/delete calls via the TMemStat class.
+# The parameter buffersize is the number of calls to malloc or free that can be
+# stored in one memory buffer.  when the buffer is full, the calls to
+# malloc/free pointing to the same location are eliminated and not written to
+# the final Tree. The default value 100000 is such that between 50 and 90% of
+# the calls are eliminated depending on the application.  the parameter
+# TMemStat.maxcalls is the maximum number of new/delete calls to be monitored 5
+# million calls is a reasonable number.
+# if your code has been compiled with -fno-omit-frame-pointer you can specify
+# gnubuiltin for Root.TMemStat.system. In this case the backtrace is much
+# faster.
+Root.TMemStat:            0
+Root.TMemStat.buffersize: 100000
+Root.TMemStat.maxcalls:   5000000
+#Root.TMemStat.system:    gnubuiltin
+
+# Activate memory statistics (size and cnt is used to trap allocation of
+# blocks of a certain size after cnt times).
+Root.MemStat:            0
+Root.MemStat.size:      -1
+Root.MemStat.cnt:       -1
+Root.ObjectStat:         0
+
+# Activate memory leak checker (use in conjunction with $ROOTSYS/bin/memprobe).
+# Currently only works on Linux with gcc.
+Root.MemCheck:           0
+Root.MemCheckFile:       memcheck.out
+
+# Global debug mode. When >0 turns on progressively more details debugging.
+Root.Debug:              0
+Root.ErrorHandlers:      1
+Root.Stacktrace:         yes
+
+# Ignore errors lower than the ignore level. Possible values:
+# Print, Info, Warning, Error, Break, SysError and Fatal.
+Root.ErrorIgnoreLevel:   Print
+
+Unix.*.Editor:           vim
+
+# Enable (default) or disable the RooFit banner printing.
+RooFit.Banner:  no
+
+# Default histogram binnings for TTree::Draw().
+Hist.Binning.1D.x:          100
+
+Hist.Binning.2D.x:           40
+Hist.Binning.2D.y:           40
+Hist.Binning.2D.Prof:       100
+
+Hist.Binning.3D.x:           20
+Hist.Binning.3D.y:           20
+Hist.Binning.3D.z:           20
+Hist.Binning.3D.Profx:      100
+Hist.Binning.3D.Profy:      100
+
+# Set a size factor for auto sizing TTreeCache for TTrees. The estimated
+# cluster size for the TTree and this factor is used to give the cache size.
+# If option is set to zero auto cache creation is disabled and the default
+# cache size is the historical one (equivalent to factor 1.0). If set to
+# non zero auto cache creation is enabled and both auto created and
+# default sized caches will use the configured factor:
+#               0.0 no automatic cache
+#              >0.0 enable automatic cache
+#               1.0 enable automatic cache to fit one cluster (default)
+# Can be overridden by the environment variable ROOT_TTREECACHE_SIZE
+# TTreeCache.Size: 1.0
+
+# Set the default TTreeCache prefilling type.
+# The prefill type may be: 0 No Prefill
+#                          1 All Branches (default)
+# Can be overridden by the environment variable ROOT_TTREECACHE_PREFILL
+# TTreeCache.Prefill: 1
