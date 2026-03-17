@@ -3,6 +3,9 @@
 INSTALL="$HOME/.local"
 PATH="$PATH:$INSTALL/bin"
 
+# don't want this script to fail!
+set +e
+
 # terminfo
 echo "INFO: compiling kitty-terminfo"
 curl -fsSL https://raw.githubusercontent.com/kovidgoyal/kitty/master/terminfo/kitty.terminfo \
@@ -18,19 +21,17 @@ echo "INFO: installing zplug and plugins"
 if [ ! -f ~/.zplug/init.zsh ]; then
     curl -fsLS https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
     # HACK: if we don't wait, we get a 'no such file or directory' when installing plugins
-    sleep 2
+    sleep 5
 fi
 zsh -ic 'zplug install'
 
 # ranger
 echo "INFO: installing ranger-fm"
-if python3 -m venv --help >/dev/null 2>&1; then
-    python3 -m venv $INSTALL/opt/ranger
-    $INSTALL/opt/ranger/bin/python -m pip install -U pip
-    $INSTALL/opt/ranger/bin/python -m pip install ranger-fm
+python3 -m venv $INSTALL/opt/ranger
+$INSTALL/opt/ranger/bin/python -m pip install -U pip
+$INSTALL/opt/ranger/bin/python -m pip install ranger-fm
 
-    mkdir -p $INSTALL/bin
-    ln -fs $INSTALL/opt/ranger/bin/ranger $INSTALL/bin/ranger
-else
-    echo "ERROR: ranger-fm not installed because python-venv is not available"
-fi
+mkdir -p $INSTALL/bin
+ln -fs $INSTALL/opt/ranger/bin/ranger $INSTALL/bin/ranger
+
+exit 0
