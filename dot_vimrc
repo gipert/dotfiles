@@ -60,6 +60,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/vim-clang-format'
   Plug 'snakemake/snakemake', {'rtp': 'misc/vim'}
   Plug 'vim-scripts/ck.vim'
+  Plug 'preservim/vim-markdown'
 
 call plug#end()
 
@@ -202,8 +203,9 @@ augroup END
 " Julia-Vim
 let g:latex_to_unicode_auto = 1
 
-" no folding in Snakefiles
+" no folding in Snakefiles and Markdown
 autocmd FileType snakemake setlocal nofoldenable
+let g:vim_markdown_folding_disabled = 1
 
 " configuration file for c++ is ~/.vim/ftplugin/cpp.vim
 " configuration file for tex in ~/.vim/ftplugin/tex.vim
