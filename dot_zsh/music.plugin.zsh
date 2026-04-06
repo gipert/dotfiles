@@ -59,7 +59,8 @@ function cdrip() {
     #  - python-discid         -> https://pypi.org/project/discid
     #  - beets                 -> https://beets.io
     #
-    #  On Arch Linux install: cd-discid cdparanoia flac python-musicbrainzngs python-discid beets
+    #  On Arch Linux install: cd-discid cdparanoia flac python-musicbrainzngs
+    #                         python-discid beets
 
     setopt pipe_fail
     setopt local_options

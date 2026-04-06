@@ -1,13 +1,24 @@
+# This is Git's per-user configuration file.
 [user]
-name = Luigi Pertoldi
-email = luigi.pertoldi@protonmail.com
-
-[init]
-defaultBranch = main
-
+# Please adapt and uncomment the following lines:
+  name = Luigi Pertoldi
+	email = luigi.pertoldi@protonmail.com
 [push]
-default = simple
-autoSetupRemote = true
+  default = simple
 
-[fetch]
-prune = true
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+	ui = true
+  pager = true
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

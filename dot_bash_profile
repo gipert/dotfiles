@@ -1,10 +1,9 @@
 #
 # ~/.bash_profile
 #
-# Executed by the Bash shell when you log in.
+# Executed from the Bash shell when you log in.
 #
-if which zsh > /dev/null; then
-    exec zsh
-else
-    [[ -f ~/.bashrc ]] && . ~/.bashrc
-fi
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+[[ -f ~/.zshenv ]] && . ~/.zshenv
+
+which zsh > /dev/null && exec zsh
