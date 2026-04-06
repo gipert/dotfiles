@@ -203,9 +203,13 @@ augroup END
 " Julia-Vim
 let g:latex_to_unicode_auto = 1
 
-" no folding in Snakefiles and Markdown
+" no folding in Snakefiles
 autocmd FileType snakemake setlocal nofoldenable
+
+" vim-markdown
 let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_new_list_item_indent = 2
+let g:vim_markdown_auto_insert_bullets = 0
 
 " configuration file for c++ is ~/.vim/ftplugin/cpp.vim
 " configuration file for tex in ~/.vim/ftplugin/tex.vim
