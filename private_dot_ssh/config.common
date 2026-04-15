@@ -1,0 +1,216 @@
+# Cloud Padovana INFN ======================
+
+Host gate-cloudve
+  HostName gate.cloudveneto.it
+
+Host virgo-elog
+  HostName 10.67.26.27
+  User gipert
+  ProxyJump gate-cloudve
+
+# Padova ==================================
+
+Host gate-infn
+  HostName gate.pd.infn.it
+  HostkeyAlgorithms +ssh-rsa
+
+Host lx
+  HostName lx
+
+Host lxpertoldi
+  HostName lxpertoldi
+  User gipert
+
+Host akela
+  HostName 192.168.130.1
+  User hades
+
+# TUM ==================================
+
+Host tum-data
+  HostName tuphe15-data.e15.ph.tum.de
+
+Host tum-atlas
+  HostName atlas.e15.ph.tum.de
+
+Host tum-gh-runner
+  HostName 129.187.137.55
+  Port 222
+  User overlord
+  IdentityFile ~/.ssh/id_kali_overlord
+
+Host tum-ganesha
+  HostName ganesha.e15.ph.tum.de
+
+Host tum-sator
+  HostName sator.e15.ph.tum.de
+
+Host tum-brahma
+  HostName brahma.e15.ph.tum.de
+
+Host tum-kta
+  HostName nidoking.ktas.ph.tum.de
+
+Host tum-dhcp
+  HostName 10.152.159.104
+  User root
+  PasswordAuthentication no
+  IdentityFile ~/.ssh/id_tum_gamma
+
+Host tum-*
+  User ge28fok
+
+# MPP =============================
+
+Host mpp-batserv02
+  HostName batserv02.mpp.mpg.de
+
+Host mpp-cslg-04
+  HostName cslg-04.mpp.mpg.de
+
+Host mpp-cslg-03
+  HostName cslg-03.mpp.mpg.de
+
+Host mpp-*
+  User pertoldi
+
+# CNAF ==============================
+
+Host cnaf-gate
+  HostName bastion.cnaf.infn.it
+
+Host cnaf-gerda
+  HostName ui-gerda.cr.cnaf.infn.it
+  ProxyJump cnaf-gate
+
+# LNGS =====================================
+
+Host lngs-linux
+  HostName linux.lngs.infn.it
+
+Host lngs-gerda
+  HostName gerda-login.lngs.infn.it
+
+Host lngs-legend-data
+  HostName legend-data.lngs.infn.it
+  ProxyJump legend-login.lngs.infn.it
+  # RemoteCommand sudo -u legend-mgt -s
+  # RemoteCommand SHELL=/usr/bin/zsh sudo -u legend-mgt -s
+  RequestTTY yes
+
+Host lngs-legend-mgt
+  Hostname legend-mgt.lngs.infn.it
+
+Host lngs-legend
+  HostName legend-login.lngs.infn.it
+
+Host lngs-legend1
+  HostName legend-login1.lngs.infn.it
+
+Host lngs-legend2
+  HostName legend-login2.lngs.infn.it
+
+Host lngs-legend-gw-1
+  HostName legend-gw-1.lngs.infn.it
+  ProxyJump legend-login.lngs.infn.it
+
+Host lngs-proxy
+  HostName legend-gw-1.lngs.infn.it
+  ProxyJump legend-login.lngs.infn.it
+  LocalForward 5432 192.168.39.3:5432 # slow control server
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h:%p
+  SessionType none
+  LogLevel DEBUG
+
+Host lngs-l200readout
+  HostName 192.168.39.38
+  User l200
+  ProxyJump lngs-legend-gw-1
+
+Host lngs-orca-mac
+  HostName 192.168.39.214
+  User daq
+  ProxyJump lngs-legend-gw-1
+
+# NERSC ==============================
+
+Host nersc-lgnddata
+  User lgnddata
+  IdentityFile ~/.ssh/lgnddata
+
+Host nersc-lgdata
+  User lgdata
+  IdentityFile ~/.ssh/lgdata
+
+Host nersc-lgprod
+  User lgprod
+  IdentityFile ~/.ssh/lgprod
+
+Host nersc-lgsim
+  User lgsim
+  IdentityFile ~/.ssh/lgsim
+
+Host nersc
+  User pertoldi
+  IdentityFile ~/.ssh/nersc
+
+Host nersc~legend
+  User pertoldi
+  IdentityFile ~/.ssh/nersc
+  RequestTTY yes
+  RemoteCommand /global/cfs/cdirs/legend/software/container-env/bin/cenv legend
+
+Host nersc*
+  HostName perlmutter-p1.nersc.gov
+
+# Miscellanea ==============================
+
+Host mpik-ssh
+  HostName ssh.mpi-hd.mpg.de
+  PubkeyAuthentication no
+  ControlPath  ~/.ssh/sockets/%C
+  ControlMaster auto
+  ControlPersist 600m
+
+Host mpik1
+  HostName lfs1.mpi-hd.mpg.de
+  ProxyJump mpik-ssh
+  ForwardX11Trusted yes
+  ForwardX11 yes
+
+Host mpik2
+  HostName lfs2.mpi-hd.mpg.de
+  ProxyJump mpik-ssh
+  ForwardX11Trusted yes
+  ForwardX11 yes
+
+Host akela
+  HostName 192.168.130.1
+  User hades
+  ProxyJump mpik2
+  ForwardX11Trusted yes
+  ForwardX11 yes
+
+Host aur.archlinux.org
+  IdentityFile ~/.ssh/aur
+  User aur
+
+Host macbook
+  HostName gipert-macbook
+  User gipert
+
+Host fampertoldi
+  HostName FamPertoldi
+  User admin-ssh
+
+# Gobal configs ===========================
+
+Host *
+  ForwardX11Trusted no
+  ForwardX11 no
+  ServerAliveInterval 90
+  IdentityFile ~/.ssh/id_default
+  User pertoldi
+
+# vim: syn=sshconfig

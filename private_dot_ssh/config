@@ -1,0 +1,25 @@
+Host gate-infn
+  LocalForward 9090 lx:22
+  LocalForward 9092 lxopera06:22
+  LocalForward 9093 lxpertoldi:22
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h:%p
+
+Host lx
+  Port 9090
+
+Host lxopera
+  Port 9092
+
+Host lxpertoldi
+  Port 9093
+
+Host lx lxopera lxpertoldi
+  HostName localhost
+  NoHostAuthenticationForLocalHost yes
+
+# I don't understand why but this does not work at the top of the file
+Match all
+Include config.common
+
+# vim: syn=sshconfig

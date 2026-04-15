@@ -1,0 +1,6 @@
+Include config
+
+Host *
+  XAuthLocation /opt/X11/bin/xauth
+
+# vim: syn=sshconfig
