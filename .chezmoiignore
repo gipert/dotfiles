@@ -30,6 +30,7 @@ README.md
 !.p10k.zsh
 !.rootrc
 !.rootlogon.C
+!.ssh
 !.ssh/*
 !.vimrc
 !.zshenv
