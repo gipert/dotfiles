@@ -4,7 +4,8 @@
 # Executed by the Bash shell when you log in.
 #
 if which zsh > /dev/null; then
-    exec zsh
-else
-    [[ -f ~/.bashrc ]] && . ~/.bashrc
+    exec zsh -l
 fi
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+[[ -f ~/.zshenv_bis ]] && . ~/.zshenv_bis
