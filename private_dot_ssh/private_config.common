@@ -91,11 +91,11 @@ Host lngs-linux
 Host lngs-gerda
   HostName gerda-login.lngs.infn.it
 
+# RemoteCommand sudo -u legend-mgt -s
+# RemoteCommand SHELL=/usr/bin/zsh sudo -u legend-mgt -s
 Host lngs-legend-data
   HostName legend-data.lngs.infn.it
   ProxyJump legend-login.lngs.infn.it
-  # RemoteCommand sudo -u legend-mgt -s
-  # RemoteCommand SHELL=/usr/bin/zsh sudo -u legend-mgt -s
   RequestTTY yes
 
 Host lngs-legend-mgt
@@ -117,10 +117,11 @@ Host lngs-legend-gw-1
 Host lngs-proxy
   HostName legend-gw-1.lngs.infn.it
   ProxyJump legend-login.lngs.infn.it
-  LocalForward 5432 192.168.39.3:5432 # slow control server
+  LocalForward 5432 192.168.39.3:5432
   ControlMaster auto
   ControlPath ~/.ssh/sockets/%r@%h:%p
-  SessionType none
+  RequestTTY no
+  RemoteCommand cat
   LogLevel DEBUG
 
 Host lngs-l200readout
