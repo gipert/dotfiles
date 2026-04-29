@@ -161,19 +161,6 @@ Host nersc~legend
   RequestTTY yes
   RemoteCommand /global/cfs/cdirs/legend/software/container-env/bin/cenv legend
 
-Host nersc-dtn01
-  HostName dtn01.nersc.gov
-Host nersc-dtn02
-  HostName dtn02.nersc.gov
-Host nersc-dtn03
-  HostName dtn03.nersc.gov
-Host nersc-dtn04
-  HostName dtn04.nersc.gov
-
-Host nersc-dtn*
-  User pertoldi
-  IdentityFile ~/.ssh/nersc
-
 Host nersc*
   HostName perlmutter-p1.nersc.gov
 
