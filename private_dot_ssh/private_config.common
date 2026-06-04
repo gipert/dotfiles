@@ -91,12 +91,16 @@ Host lngs-linux
 Host lngs-gerda
   HostName gerda-login.lngs.infn.it
 
-# RemoteCommand sudo -u legend-mgt -s
-# RemoteCommand SHELL=/usr/bin/zsh sudo -u legend-mgt -s
 Host lngs-legend-data
   HostName legend-data.lngs.infn.it
-  ProxyJump legend-login.lngs.infn.it
+  ProxyJump legend-mgt.lngs.infn.it
   RequestTTY yes
+
+Host lngs-legend-data-mgt
+  HostName legend-data.lngs.infn.it
+  ProxyJump legend-mgt.lngs.infn.it
+  RequestTTY yes
+  RemoteCommand sudo -i -u legend-mgt
 
 Host lngs-legend-mgt
   Hostname legend-mgt.lngs.infn.it
@@ -170,6 +174,11 @@ Host nersc-dtn03
   HostName dtn03.nersc.gov
 Host nersc-dtn04
   HostName dtn04.nersc.gov
+
+Host nersc-dtn01-lgdata
+  HostName dtn01.nersc.gov
+  User lgdata
+  IdentityFile ~/.ssh/lgdata
 
 Host nersc-dtn*
   User pertoldi

@@ -5,7 +5,7 @@ set shiftwidth=2
 set grepprg=grep\ -nH\ $*
 set spell
 set spelllang=en_us
-set tw=99
+set tw=90
 
 " disable builtin syntax checking
 let g:tex_no_error = 1
