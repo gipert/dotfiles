@@ -31,7 +31,7 @@ call plug#begin('~/.vim/plugged')
   endif
 
   " FIXME: this is somehow now disabling FastFold and pasting is very slow
-  Plug 'matze/vim-tex-fold'
+  " Plug 'matze/vim-tex-fold'
   Plug 'Konfekt/FastFold'
   Plug 'reedes/vim-wheel'
   Plug 'JuliaEditorSupport/julia-vim'
@@ -44,7 +44,7 @@ call plug#begin('~/.vim/plugged')
   endif
 
   Plug 'tpope/vim-fugitive'
-  Plug 'dense-analysis/ale'
+  " Plug 'dense-analysis/ale'
   Plug 'matze/vim-move'
   Plug 'altercation/vim-colors-solarized'
   Plug 'morhetz/gruvbox'
@@ -122,7 +122,20 @@ let &t_Ce = "\e[4:0m"
 " auto-reload
 " automatically reload files changed outside vim
 set autoread
-autocmd FocusGained,BufEnter * checktime
+autocmd FocusGained,BufEnter * silent! checktime
+" CursorHold only fires once per idle period, so also poll on a repeating
+" timer to catch changes while the cursor sits completely still
+if has('timers')
+  function! s:AutoReloadCheck(timer) abort
+    silent! checktime
+  endfunction
+  call timer_start(1000, function('s:AutoReloadCheck'), {'repeat': -1})
+endif
+" notify when a buffer was auto-reloaded from disk
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg
+  \| echom 'File changed on disk, buffer reloaded.'
+  \| echohl None
 
 " color scheme settings
 silent! colorscheme gruvbox
