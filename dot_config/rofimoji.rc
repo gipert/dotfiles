@@ -1,1 +1,1 @@
-files = [emojis, latin, greek, math]
+files = [emojis, latin, greek, math, general_punctuation]
