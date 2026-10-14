@@ -137,22 +137,33 @@ function cdrip() {
     # [1] https://musicbrainz.org/doc/Disc_ID
     # [2] https://musicbrainz.org/doc/Release
     local pycode='
-from sys import exit
+import sys
 import discid
 import musicbrainzngs
 
 musicbrainzngs.set_useragent("cdrip", "v0.1", "gipert@pm.me")
 
 disc = discid.read()
-data = None
 try:
-  data = musicbrainzngs.get_releases_by_discid(disc.id)
-except musicbrainzngs.musicbrainz.ResponseError as e:
-  print("ERROR: could not find the disc ID in the musicbrainz database, please submit it through the following URL:")
-  print(">>>", disc.submission_url)
-  exit(1)
+  # passing the TOC enables fuzzy matching if the exact disc ID is unknown
+  data = musicbrainzngs.get_releases_by_discid(disc.id, toc=disc.toc_string, cdstubs=False)
+except musicbrainzngs.musicbrainz.ResponseError:
+  data = {}
+
+if "disc" in data:
+  releases = data["disc"]["release-list"]
 else:
-  print(":".join([r["id"] for r in data["disc"]["release-list"]]))
+  releases = data.get("release-list", [])
+
+if not releases:
+  print("ERROR: could not find the disc ID in the musicbrainz database, please submit it through the following URL:", file=sys.stderr)
+  print(">>>", disc.submission_url, file=sys.stderr)
+  sys.exit(1)
+
+if "disc" not in data:
+  print("WARNING: exact disc ID not found, using releases with a matching TOC (fuzzy match)", file=sys.stderr)
+
+print(":".join(r["id"] for r in releases))
 '
     local musicbrainz_releases=$(python -c "$pycode") || return 1
     echo "MusicBrainz releases found: $musicbrainz_releases" | tee "$logfile"
