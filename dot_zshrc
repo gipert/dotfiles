@@ -1,6 +1,12 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# powerlevel10k instant prompt: keep at the top, below anything that may ask
+# for input (password prompts, [y/n] questions)
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # history
 HISTFILE="$HOME/.zhistory"
 HISTSIZE=50000
@@ -62,11 +68,6 @@ bindkey '^[[3~'  delete-char
 bindkey '^[3;5~' delete-char
 bindkey '\e[3~'  delete-char
 bindkey -r '^[' # Alt+key does not trigger vi-cmd-mode anymore
-
-# powerlevel10k instant prompt
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
 # eval dircolors
 [[ -f $HOME/.dircolors ]] && eval "$(dircolors "$HOME/.dircolors")"
