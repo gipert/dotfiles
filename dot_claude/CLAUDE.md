@@ -8,6 +8,8 @@
   api, repo, …).
 - `pre-commit` must be always invoked outside the sandbox, since it needs write
   permissions under `~/.cache`.
+- `ssh`, `scp`, `rsync` to remote hosts must run outside the sandbox: its
+  network filter blocks SSH (host names do not even resolve).
 - On `cannot enable executable stack as shared object requires` from a pixi/conda
   Julia: clear the flag in the rattler cache in place, never in the repo. Patch a
   copy with `patchelf --clear-execstack`, then `cat` it back over
@@ -117,56 +119,11 @@ engineers. Clarity first, brevity second: when they conflict, choose clarity.
 
 ## NERSC HPC center
 
-- On the `nersc` SSH host, the `legend-simflow` production cycles live under
-  `/global/cfs/cdirs/m2676/sims/prod`. A specific cycle such as
-  `l200cfg09/v2.3.0` is therefore at
-  `/global/cfs/cdirs/m2676/sims/prod/l200cfg09/v2.3.0`
-- The `legend-dataflow` productions live under
-  `/global/cfs/projectdirs/m2676/data/lngs/l200/public/prodenv/prod-blind`,
-  they are copied from the LNGS cluster.
-- When SSH-ing to `nersc` as the `pertoldi` user, activate the global mamba env
-  `pertoldi`, you will find the LEGEND software there (and also `pixi`, `uv`).
-- If you need to upgrade a Python package or add a new one, ask the user to
-  install it.
-- Treat all access through the `nersc` SSH host as **read-only**. Inspect
-  files and run non-mutating commands, but do not modify files, write to the
-  prodenv, or launch real production jobs there. Note that `snakemake -n` also
-  requires write access.
-- `ssh nersc` gets you every time to a different login node.
-- If a fix needs to be applied, make it locally / via git and let the user
-  deploy it, rather than editing files on the host.
-- The I/O on the CFS storage disk is quite slow. Read files below the faster
-  read-only mount of `/global/cfs` at `/dvs_ro/cfs`. For even better
-  performance consider using the SSD scratch disk at `$SCRATCH`.
-- Reading HDF5 files on CFS needs file locking disabled with e.g.
-  `HDF5_USE_FILE_LOCKING=FALSE` or the `h5py` function argument.
-- Run commands in the env with `ssh -n -q nersc "zsh -ic 'mamba activate
-  pertoldi; <cmd>'"`.  Plain `ssh nersc '<cmd>'` has no conda on PATH. Always
-  pass `-n`: a remote command that reads stdin otherwise hangs forever.
-- For anything beyond a one-liner, copy a script to `$SCRATCH/<task>/` and run
-  it there with `bash`. Nested quoting through ssh + zsh breaks easily.
-- `$SCRATCH/<task>/` is writable for scratch work (scripts, outputs,
-  `NUMBA_CACHE_DIR`). Everything else stays read-only.
-
-### Filesystem discovery
-
-- Never recursively traverse `/`, `/global`, `/global/cfs`, `/global/homes`,
-  `/pscratch`, `/opt`, `/usr`, or another shared top-level directory. This
-  prohibition applies on compute nodes as well as login nodes.
-- This prohibition includes `find`, `bfs`, `fd`, `tree`, recursive `du`,
-  `rg --files`, recursive `grep`, recursive `ls`, globstar expansion, and
-  recursive traversal written in Python or another language.
-- Before searching, identify a bounded root inside the current workspace or a
-  known project or data directory. Constrain depth and filename patterns where
-  possible. If no bounded root is known, stop and ask the user.
-- Locate software with `command -v`, `type -a`, `module spider`, package
-  metadata, or known environment prefixes. Do not search mounted filesystems
-  for executables.
-- Do not disable or bypass an installed filesystem-traversal hook, and do not
-  ask the user to approve an equivalent broad scan through another command.
-- A compute allocation is not permission for an unbounded traversal of a
-  shared filesystem. Narrow the search first; route only bounded,
-  computationally substantial searches through `$perlmutter-compute`.
+- Load the `nersc` skill before any NERSC access.
+- Even without it: never submit jobs to the queue unless explicitly asked
+  (they cost allocation hours), and never recursively traverse shared
+  top-level directories (`/`, `/global`, `/global/cfs`, `/global/homes`,
+  `/pscratch`, `/opt`, `/usr`).
 
 ## LaTeX
 
