@@ -59,6 +59,16 @@ zplug "~/.zsh", from:local
 
 zplug load
 
+# enhancd: keep the directory log small. Listing it checks every entry with
+# [[ -d ]], which is very slow on network filesystems (NERSC CFS, DVS).
+if (( $+functions[__enhancd::history::update] )); then
+  # do not log all sibling directories of each parent on the first visit
+  __enhancd::filepath::walk() { : }
+  # keep only the 1000 most recent directories
+  functions[__enhancd::history::update_orig]=$functions[__enhancd::history::update]
+  __enhancd::history::update() { __enhancd::history::update_orig | tail -n 1000 }
+fi
+
 # keybinds
 bindkey -v
 bindkey "^A"     vi-beginning-of-line

@@ -186,6 +186,18 @@ Host nersc-dtn*
 
 Host nersc*
   HostName perlmutter-p1.nersc.gov
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%C
+  ControlPersist 4h
+
+# Perlmutter compute nodes in a running job; they share the login node host key
+Host nid*
+  ProxyJump nersc
+  IdentityFile ~/.ssh/nersc
+  HostKeyAlias perlmutter-p1.nersc.gov
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%C
+  ControlPersist 4h
 
 # Miscellanea ==============================
 

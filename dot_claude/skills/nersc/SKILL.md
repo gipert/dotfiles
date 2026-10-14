@@ -26,6 +26,10 @@ description: How to work on the NERSC HPC center (Perlmutter) through the `nersc
 - SSH to `nersc*` hosts reuses one open connection (`ControlMaster`, closes
   after 4 h idle), so all calls land on the same login node. If `ssh` hangs,
   run `ssh -O exit nersc` and retry.
+- NERSC clocks, logs and Slurm times are in US Pacific time
+  (`America/Los_Angeles`). When reporting a time to the user, convert it to
+  the local time zone of this machine (check with `date`), e.g.
+  `date -d 'TZ="America/Los_Angeles" 2026-10-14 07:08'`.
 
 ## Compute node
 
