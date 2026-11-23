@@ -6,8 +6,8 @@
   sandbox blocks the auth/config writes it performs and `gh` commands fail in
   non-obvious ways. This applies to every `gh` subcommand (auth, pr, issue,
   api, repo, …).
-- `pre-commit` must be always invoked outside the sandbox, since it needs write
-  permissions under `~/.cache`.
+- `pre-commit`, `pixi`, `snakemake` must be always invoked outside the sandbox,
+  since they need write permissions under `~/.cache`.
 - `ssh`, `scp`, `rsync` to remote hosts must run outside the sandbox: its
   network filter blocks SSH (host names do not even resolve).
 - On `cannot enable executable stack as shared object requires` from a pixi/conda
@@ -109,6 +109,10 @@ engineers. Clarity first, brevity second: when they conflict, choose clarity.
   source /data1/users/pertoldi/.local/venvs/global/bin/activate
   ```
   you will find the LEGEND software there.
+- The home directory on `lngs-legend*` hosts has a very small quota. Never
+  write to `~`: no installs, caches or tool state (e.g. Claude Code's
+  `~/.claude`, `~/.local/share/claude`). If something must be written, ask the
+  user first and use `/data1/users/pertoldi`.
 - If you need another Python package, ask the user to install it.
 - Treat all access through the `lngs-legend` SSH host as **read-only**. Inspect
   files and run non-mutating commands, but do not modify files, write to the
@@ -138,3 +142,24 @@ engineers. Clarity first, brevity second: when they conflict, choose clarity.
 - Use the `\toprule`, `\midrule`, `\bottomrule` commands from the `booktabs`
   pachage for tables, unless `revtex` is used (then use the recommended
   `revtex` commands)
+
+# Julia
+
+- Prefer using the `Kaimon.jl` MCP server for Julia code execution and the
+  tools and skills it provides. The server is configured to use the current
+  Julia release by default, and it automatically runs `Revise.revise()` before
+  every eval, so edits to loaded packages are already applied when your code
+  runs.
+- In case, there are already open Julia REPL sessions open, check with the user
+  if an existing session can be used. If not, start a new agent session.
+- Use Kaimon's tools directly for what they cover instead of rebuilding them
+  with `ex`: e.g. run tests with `run_tests`/`check_tests`, not by
+  `include`-ing `runtests.jl` in a hand-built test set.
+- In case kaimon MCP is not available, start it by executing the kaimon-tmux
+  command from my `.zshrc` in a fresh session which starts Kaimon in a fresh
+  tmux session in the background. Then, reconnect the kaimon MCP.
+
+# Graphics
+
+- Make scientific plots in PDF format. Use bitmap only if the PDF file would be
+  too big to display with a normal editor.
