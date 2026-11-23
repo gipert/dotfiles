@@ -57,6 +57,10 @@ Host tum-dhcp
   PasswordAuthentication no
   IdentityFile ~/.ssh/id_tum_gamma
 
+Host git.e15.ph.tum.de
+  User git
+  IdentityFile ~/.ssh/id_e15_gitlab
+
 Host tum-*
   User ge28fok
 
