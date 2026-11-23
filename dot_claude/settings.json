@@ -1,0 +1,44 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet"
+  },
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "model": "sonnet",
+  "statusLine": {
+    "type": "command",
+    "command": "bash /home/gipert/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "skill-creator@claude-plugins-official": true,
+    "inspect-textdb@dbetto-tools": true,
+    "code-simplifier@anthropic-plugin-directory": true,
+    "cc-plugin-you-should-know@builtin": true
+  },
+  "extraKnownMarketplaces": {
+    "dbetto-tools": {
+      "source": {
+        "source": "github",
+        "repo": "gipert/dbetto"
+      }
+    }
+  },
+  "outputStyle": "Concise",
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true
+  },
+  "tui": "fullscreen",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "verbose": true,
+  "fileCheckpointingEnabled": false,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true
+}
