@@ -1,27 +1,22 @@
 {
-  "outputStyle": "Concise",
-  "permissions": {
-    "defaultMode": "auto"
-  },
-  "sandbox": {
-    "enabled": true,
-    "autoAllowBashIfSandboxed": true
-  },
-  "model": "sonnet",
-  "tui": "fullscreen",
-  "voice": {
-    "enabled": true,
-    "mode": "hold"
-  },
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
     "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet"
+  },
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "model": "opus",
+  "statusLine": {
+    "type": "command",
+    "command": "bash /home/gipert/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
     "skill-creator@claude-plugins-official": true,
     "inspect-textdb@dbetto-tools": true,
     "code-simplifier@anthropic-plugin-directory": true,
-    "cc-plugin-you-should-know@builtin": true
+    "cc-plugin-you-should-know@builtin": true,
+    "pyright-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "dbetto-tools": {
@@ -31,12 +26,52 @@
       }
     }
   },
+  "outputStyle": "Concise",
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true
+  },
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "medium"
+    }
+  },
+  "tui": "fullscreen",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
   "verbose": true,
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "statusLine": {
-    "type": "command",
-    "command": "bash /home/gipert/.claude/statusline-command.sh"
+  "autoMode": {
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: PUBLIC — legend-exp/remage (github.com/legend-exp/remage). Any push here is publishing.",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: Default branch `master` (per repo facts); gh reports default `main` with an active ruleset and protected branch `main` — treat `main` as the protected/default branch per the authoritative gh data",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine with open internet. Note: per user's global CLAUDE.md, `gh`, `pre-commit`, `pixi`, `snakemake`, `ssh`, `scp`, `rsync` are expected to run outside any sandbox the harness may impose",
+      "**Source control**: The trusted repo (legend-exp/remage) and its origin remote (github.com:legend-exp/remage) only — no additional orgs configured",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: any file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material; preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment. Note: LNGS LEGEND cluster paths under `/data2/public/prodenv/prod-blind` on the `lngs-legend` SSH host match this pattern and are treated as production; per user's global CLAUDE.md that host is read-only for this agent regardless",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development (Geant4-based physics simulation framework, remage)",
+      "**Trusted repo**: legend-exp/remage (public, github.com:legend-exp/remage) — the working directory this session started in. Being public, only this repo's own work is OK to push here; secrets and sensitive/personal data are never cleared into it regardless of visibility",
+      "**Org-specific CLIs**: None configured beyond standard toolchain (ctest, pre-commit, cmake used routinely in this repo per usage data)",
+      "routine under gipert/ prefix: no evidence found for a dedicated namespace; not adopted"
+    ]
   }
 }
